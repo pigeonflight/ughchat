@@ -1,4 +1,4 @@
-## A Channel API for Python Flask and Google App Engine 
+## A Channel API Demo for Python Flask and Google App Engine 
 
 
 ## Run Locally

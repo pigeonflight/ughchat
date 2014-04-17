@@ -1,24 +1,23 @@
 <html>
 <head>
+    <!--
 <script type="text/javascript" src="/_ah/channel/jsapi"></script>
-
+-->
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
 <link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" />
 
   </head>
 <body>
-  <h2>Welcome to the chatroom with id {{ values.gameid }}</h2>
-<div id="chat"></div>
-  <h3>Usernames</h3>
-  <div id="otheruser"></div>
-  <form id="chatform">
-    <input type="text" id="message" name="message"></input>
-  <input type="submit" />
-  </form>
+    <div class="container">
+    
+  <h2>Welcome to a near useless chatroom system</h2>
+    
+    Enter your name <input type="text" id="name"/> and <a id="newchat" class="btn btn-primary" href="{{ values.gameid }}">Start a new chat</a>
 
-  
+  </div>
 </body>
-<script src="{{ url_for('static',filename='script.js') }}"></script>
+<script src="{{ url_for('static',filename='front.js') }}"></script>
+<!--
 <script>
     channel = new goog.appengine.Channel('{{ values.token }}');
     socket = channel.open();
@@ -27,4 +26,5 @@
     socket.onerror = onError;
     socket.onclose = onClose;
   </script>
+-->
 </html>

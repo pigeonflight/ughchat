@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script type="text/javascript" src="/_ah/channel/jsapi"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" />
+<link href="{{ url_for('static',filename='style.css') }}" rel="stylesheet" />
+
+    <title>Setup</title>
+</head>
+<body>
+<div class="container">
+
+<h1>Ready to roll?</h1>
+    <div id="chat"></div>
+    <form id="chatform">
+    <input type="text" id="message" name="message"></input>
+  <input type="submit" />
+  </form>
+    <div id="status">Waiting for someone else to join</div>   
+     Invite a friend by typing their name here: <input type="text" id="name"/>
+    <p>Then sharing this URL with them:</p>
+        <input id="chaturl" type="text" value=""/>
+</div>
+    </body>
+    <script>
+        window.onload=function(){
+            
+            var chaturl = document.getElementById("chaturl");
+            var namebox = document.getElementById("name");
+            var baseurl = "{{ request.host_url }}{{values.gameid}}";
+            chaturl.value = baseurl;
+            
+            namebox.addEventListener("keyup",function(){
+                                   
+                                   chaturl.value = baseurl + "/" +this.value;
+                                     });
+        }
+    </script>
+     <script src="{{ url_for('static',filename='script.js') }}">
+      </script>
+<script>
+    channel = new goog.appengine.Channel('{{ values.token }}');
+    socket = channel.open();
+    socket.onopen = onOpened;
+    socket.onmessage = onMessage;
+    socket.onerror = onError;
+    socket.onclose = onClose;
+  </script>
+    </script>
+</html>
