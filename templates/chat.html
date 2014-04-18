@@ -10,31 +10,34 @@
 </head>
 <body>
 <div class="container">
-
+<a href="/">Go Home</a>
 <h1>Ready to roll?</h1>
     <div id="chat"></div>
     <form id="chatform">
     <input type="text" id="message" name="message"></input>
   <input type="submit" />
   </form>
-    <div id="status">Waiting for someone else to join</div>   
-     Invite a friend by typing their name here: <input type="text" id="name"/>
-    <p>Then sharing this URL with them:</p>
+    <h3>Welcome {{values.yourname}} to the <span id="roomid">{{values.roomid}}</span> room</h3>
+    <div id="status">Waiting for <span class="label label-success" id="otheruser"></span>.
+     <!-- Invite a friend by typing their name here: <input type="text" id="name"/> -->
+    <div class="chatbox">
+        <p>Share this URL with them:</p>
         <input id="chaturl" type="text" value=""/>
+    </div>
 </div>
     </body>
     <script>
         window.onload=function(){
             
             var chaturl = document.getElementById("chaturl");
-            var namebox = document.getElementById("name");
-            var baseurl = "{{ request.host_url }}{{values.gameid}}";
+            //var namebox = document.getElementById("name");
+            var baseurl = "{{ request.host_url }}{{values.roomid}}";
             chaturl.value = baseurl;
             
-            namebox.addEventListener("keyup",function(){
+            /* namebox.addEventListener("keyup",function(){
                                    
                                    chaturl.value = baseurl + "/" +this.value;
-                                     });
+                                     }); */
         }
     </script>
      <script src="{{ url_for('static',filename='script.js') }}">
