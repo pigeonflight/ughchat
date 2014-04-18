@@ -1,4 +1,3 @@
-
 var onClose = function() {
  alert("connection lost try to refresh");
   }
@@ -11,7 +10,8 @@ var onMessage = function(message) {
 //  themessage = JSON.stringify(message);
   console.log("we have a message: " + message.data);
   chatbox = document.getElementById("chat");
-  chatbox.innerHTML += "<p>" + message.data + "</p>";
+  var otheruser = sessionStorage.otheruser;  
+  chatbox.innerHTML += "<p><b>" + otheruser + "</b>: " + message.data + "</p>";
 }
 var onOpened = function() {
   //figure out otherusername
@@ -26,6 +26,7 @@ var onOpened = function() {
           // if not set then prompt
           sessionStorage.otheruser = prompt("enter the other person's nickname");
       }
+    var currentuser = location.href.split('/').reverse()[0];
     var roomid = document.getElementById("roomid").innerHTML;
     var otheruser = sessionStorage.otheruser;
     var otheruserbox = document.getElementById("otheruser");
@@ -41,7 +42,7 @@ var onOpened = function() {
              sendMessage(otheruser,roomid,messagebox.value);
              
              chatbox = document.getElementById("chat");
-             chatbox.innerHTML += "<p>" + messagebox.value + "</p>";
+             chatbox.innerHTML += "<p><b>" + currentuser + "</b>: " + messagebox.value + "</p>";
              // reset messagebox
              messagebox.value = "";
             });
