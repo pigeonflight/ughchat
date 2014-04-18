@@ -1,13 +1,4 @@
 
-
-
-var sendMessage = function(name,roomid,message) {
-var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/sendmessage/' + name + '/' + roomid, true);
-  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-  xhr.send("message="+message);
-};
-
 var onClose = function() {
  alert("connection lost try to refresh");
   }
@@ -45,11 +36,26 @@ var onOpened = function() {
               event.preventDefault();
              // update the chatroom
              messagebox = document.getElementById("message");
+                
+             // send a message using ajax to the server 
              sendMessage(otheruser,roomid,messagebox.value);
+             
              chatbox = document.getElementById("chat");
              chatbox.innerHTML += "<p>" + messagebox.value + "</p>";
+             // reset messagebox
+             messagebox.value = "";
             });
         
     }
        }
                           
+// function used to send messages to the server
+// these are then sent to the other user via
+// the channel api, look for the /sendmessage route
+// in the main.py file
+var sendMessage = function(name,roomid,message) {
+var xhr = new XMLHttpRequest();
+  xhr.open('POST', '/sendmessage/' + name + '/' + roomid, true);
+  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  xhr.send("message="+message);
+};
