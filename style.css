@@ -1,0 +1,5 @@
+body{padding:15px;font-family:arial;background:#dedede;}
+#header{background:red;min-height:100px;}
+#header img{width:100px;}
+#footer{background:yellow;min-height:400px;}
+#main{background:green;}
